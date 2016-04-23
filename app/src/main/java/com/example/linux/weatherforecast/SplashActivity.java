@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class SplashActivity extends AppCompatActivity {
-    private final int SPLASH_INTERVAL = 3000;
+    private final int SPLASH_INTERVAL = 30;
     boolean isActive = true;
 
     @Override

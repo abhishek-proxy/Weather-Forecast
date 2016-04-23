@@ -3,8 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <EditText
-        android:layout_width="70dp"
-        android:layout_height="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:id="@+id/city_name"
         android:textColor="@color/colorPrimaryDark"/>
 

@@ -29,6 +29,7 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
     TextView textView;
     private Button getCityWeatherReportButton;
     private BehaviorSubject<Map<String, String>> weatherData = BehaviorSubject.create();
+    String citiesList[];
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,11 +55,14 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
     }
 
     private void requestWeatherData(){
-        String city = cityName.getText().toString();
-        if (city.equals(""))
+        String cities = cityName.getText().toString();
+        if (cities.equals(""))
             Toast.makeText(getActivity(), "Please enter city name", Toast.LENGTH_LONG);
         else
-            weatherData.onNext(getMap(city));
+            citiesList = Util.getCityArray(cities);
+            textView.setText(citiesList[0]);
+            for(int i=0; i<citiesList.length; i++)
+                weatherData.onNext(getMap(citiesList[i]));
 
     }
 
@@ -74,7 +78,7 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
 
     @Override
     public void cityWeatherReport(Data weatherData) {
-        textView.setText(weatherData.getCity().getName());
+
 
 
     }
