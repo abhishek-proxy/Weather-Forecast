@@ -1,11 +1,15 @@
 package com.example.linux.weatherforecast.Data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
  * Created by Linux on 4/23/16.
  */
-public class DailyReport {
+public class DailyReport implements Parcelable {
     long dt;
     Temperature temp;
     float pressure;
@@ -99,4 +103,50 @@ public class DailyReport {
     float snow;
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(this.dt);
+        dest.writeParcelable(this.temp, flags);
+        dest.writeFloat(this.pressure);
+        dest.writeInt(this.humidity);
+        dest.writeFloat(this.speed);
+        dest.writeParcelableArray(weather.toArray(new Weather[]{}), flags);
+        dest.writeInt(this.deg);
+        dest.writeInt(this.clouds);
+        dest.writeFloat(this.rain);
+        dest.writeFloat(this.snow);
+    }
+
+    public DailyReport() {
+    }
+
+    protected DailyReport(Parcel in) {
+        this.dt = in.readLong();
+        this.temp = in.readParcelable(Temperature.class.getClassLoader());
+        this.pressure = in.readFloat();
+        this.humidity = in.readInt();
+        this.speed = in.readFloat();
+        this.weather = new LinkedList(Arrays.asList(in.readParcelableArray(Weather.class.getClassLoader())));
+        this.deg = in.readInt();
+        this.clouds = in.readInt();
+        this.rain = in.readFloat();
+        this.snow = in.readFloat();
+    }
+
+    public static final Creator<DailyReport> CREATOR = new Creator<DailyReport>() {
+        @Override
+        public DailyReport createFromParcel(Parcel source) {
+            return new DailyReport(source);
+        }
+
+        @Override
+        public DailyReport[] newArray(int size) {
+            return new DailyReport[size];
+        }
+    };
 }
