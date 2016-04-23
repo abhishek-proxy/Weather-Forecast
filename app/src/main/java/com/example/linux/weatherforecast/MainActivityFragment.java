@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.linux.weatherforecast.Data.Data;
@@ -25,6 +26,7 @@ import rx.subjects.BehaviorSubject;
 public class MainActivityFragment extends Fragment implements MainActivityView{
 
     private EditText cityName;
+    TextView textView;
     private Button getCityWeatherReportButton;
     private BehaviorSubject<Map<String, String>> weatherData = BehaviorSubject.create();
 
@@ -44,6 +46,7 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
     private void initializeViews(View view){
         cityName = (EditText) view.findViewById(R.id.city_name);
         getCityWeatherReportButton = (Button) view.findViewById(R.id.request_weather_report);
+        textView = (TextView) view.findViewById(R.id.test);
 
     }
     private void setEventsForViews() {
@@ -71,6 +74,7 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
 
     @Override
     public void cityWeatherReport(Data weatherData) {
+        textView.setText(weatherData.getCity().getName());
 
 
     }

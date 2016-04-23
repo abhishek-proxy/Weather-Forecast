@@ -5,10 +5,18 @@
     <EditText
         android:layout_width="70dp"
         android:layout_height="20dp"
-        android:id="@+id/city_name"/>
+        android:id="@+id/city_name"
+        android:textColor="@color/colorPrimaryDark"/>
+
     <Button
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
+        android:text="press to get data"
         android:id="@+id/request_weather_report"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/test"
+        android:textColor="@color/colorPrimaryDark"/>
 </LinearLayout>
