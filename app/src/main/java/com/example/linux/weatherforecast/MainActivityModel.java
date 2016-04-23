@@ -1,5 +1,7 @@
 package com.example.linux.weatherforecast;
 
+import com.example.linux.weatherforecast.Data.Data;
+
 import java.util.Map;
 
 import rx.Observable;

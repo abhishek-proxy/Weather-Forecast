@@ -8,6 +8,6 @@ import rx.schedulers.Schedulers;
  */
 public class MainActivityPresenter {
     public MainActivityPresenter(MainActivityModel model, MainActivityView view) {
-        view.signIn().subscribe(map -> model.getcityWeather(map).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(signInResponse -> view.userAuthenticated(signInResponse)));
+        view.getWeatherReport().subscribe(map -> model.getcityWeather(map).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(ApiResponse -> view.cityWeatherReport(ApiResponse)));
     }
 }

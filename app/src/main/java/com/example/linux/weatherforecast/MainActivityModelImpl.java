@@ -1,5 +1,7 @@
 package com.example.linux.weatherforecast;
 
+import com.example.linux.weatherforecast.Data.Data;
+
 import java.util.Map;
 
 import rx.Observable;
@@ -15,6 +17,6 @@ public class MainActivityModelImpl implements MainActivityModel {
 
     @Override
     public Observable<Data> getcityWeather(Map<String, String> cityWeatherRequestMap) {
-        return service.getcityWeatherReport(cityWeatherRequestMap);
+        return service.getcityWeatherReport(cityWeatherRequestMap.get("cityName"), cityWeatherRequestMap.get("count"), cityWeatherRequestMap.get("APPID"));
     }
 }

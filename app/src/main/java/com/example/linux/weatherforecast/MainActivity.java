@@ -3,7 +3,6 @@ package com.example.linux.weatherforecast;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.GsonBuilder;
 
 import retrofit.RestAdapter;

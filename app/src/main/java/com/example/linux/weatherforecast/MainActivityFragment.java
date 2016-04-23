@@ -9,14 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.linux.weatherforecast.Data.Data;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import rx.Observable;
-import java.util.Map;
 
-import rx.Observable;
 import rx.subjects.BehaviorSubject;
 /**
  * Created by Linux on 4/23/16.
@@ -50,26 +51,32 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
     }
 
     private void requestWeatherData(){
-        if ()
+        String city = cityName.getText().toString();
+        if (city.equals(""))
+            Toast.makeText(getActivity(), "Please enter city name", Toast.LENGTH_LONG);
+        else
+            weatherData.onNext(getMap(city));
 
     }
 
     private Map<String, String> getMap(String cityName){
         Map<String, String> weatherReportRequestMap = new LinkedHashMap<>();
-        weatherReportRequestMap.put("q", cityName);
-        weatherReportRequestMap.put("cnt", Constants.DAYS_COUNT);
+        weatherReportRequestMap.put("cityName", cityName);
+        weatherReportRequestMap.put("count", Constants.DAYS_COUNT);
         weatherReportRequestMap.put("APPID", Constants.APP_ID);
+        return weatherReportRequestMap;
     }
 
 
 
     @Override
-    public void cityWetherReport(Data weatherData) {
+    public void cityWeatherReport(Data weatherData) {
+
 
     }
 
     @Override
     public Observable<Map<String, String>> getWeatherReport() {
-        return null;
+        return weatherData.asObservable();
     }
 }

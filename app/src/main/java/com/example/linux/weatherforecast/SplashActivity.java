@@ -12,6 +12,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        new WaitForSplashTask().execute();
     }
     class WaitForSplashTask extends AsyncTask<Void, Void, Void> {
         @Override
