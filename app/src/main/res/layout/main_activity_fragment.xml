@@ -9,6 +9,6 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:id="@+id/city_name_entered"/>
+        android:id="@+id/request_weather_report"/>
 
 </LinearLayout>
