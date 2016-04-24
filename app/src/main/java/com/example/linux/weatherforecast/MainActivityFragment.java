@@ -4,6 +4,7 @@ package com.example.linux.weatherforecast;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.linux.weatherforecast.Data.CitiesData;
 import com.example.linux.weatherforecast.Data.Data;
 
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 import rx.Observable;
@@ -30,6 +33,8 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
     private Button getCityWeatherReportButton;
     private BehaviorSubject<Map<String, String>> weatherData = BehaviorSubject.create();
     String citiesList[];
+    private CitiesData citiesData;
+    LinkedList<Data> citiesWeatherData;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,6 +47,8 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
 
         initializeViews(view);
         setEventsForViews();
+        citiesData = new CitiesData();
+        citiesWeatherData = new LinkedList<Data>();
     }
 
     private void initializeViews(View view){
@@ -60,10 +67,15 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
             Toast.makeText(getActivity(), "Please enter city name", Toast.LENGTH_LONG);
         else
             citiesList = Util.getCityArray(cities);
-            textView.setText(citiesList[0]);
             for(int i=0; i<citiesList.length; i++)
                 weatherData.onNext(getMap(citiesList[i]));
+    }
 
+    private void nextActivity(){
+        citiesData.setCitiesData(citiesWeatherData);
+        Log.i("Notes","in next function");
+        Log.i("Notes", citiesData.getCitiesData().size() + "");
+        Navigate.toCityDetails(getActivity(), citiesData);
     }
 
     private Map<String, String> getMap(String cityName){
@@ -78,9 +90,9 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
 
     @Override
     public void cityWeatherReport(Data weatherData) {
-
-
-
+        citiesWeatherData.add(weatherData);
+        if (citiesWeatherData.size() == citiesList.length)
+            nextActivity();
     }
 
     @Override

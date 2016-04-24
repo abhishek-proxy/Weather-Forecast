@@ -19,4 +19,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/test"
         android:textColor="@color/colorPrimaryDark"/>
+
+
 </LinearLayout>

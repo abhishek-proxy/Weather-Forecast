@@ -10,14 +10,14 @@ import java.util.LinkedList;
  * Created by Linux on 4/24/16.
  */
 public class CitiesData implements Parcelable {
-    LinkedList<Data> citesData;
+    LinkedList<Data> citiesData;
 
-    public LinkedList<Data> getCitesData() {
-        return citesData;
+    public LinkedList<Data> getCitiesData() {
+        return citiesData;
     }
 
-    public void setCitesData(LinkedList<Data> citesData) {
-        this.citesData = citesData;
+    public void setCitiesData(LinkedList<Data> citiesData) {
+        this.citiesData = citiesData;
     }
 
     @Override
@@ -27,17 +27,17 @@ public class CitiesData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelableArray(citesData.toArray(new DailyReport[]{}), flags);
+        dest.writeParcelableArray(citiesData.toArray(new Data[]{}), flags);
     }
 
     public CitiesData() {
     }
 
     protected CitiesData(Parcel in) {
-        this.citesData = new LinkedList(Arrays.asList(in.readParcelableArray(CitiesData.class.getClassLoader())));
+        this.citiesData = new LinkedList(Arrays.asList(in.readParcelableArray(Data.class.getClassLoader())));
     }
 
-    public static final Parcelable.Creator<CitiesData> CREATOR = new Parcelable.Creator<CitiesData>() {
+    public static final Creator<CitiesData> CREATOR = new Creator<CitiesData>() {
         @Override
         public CitiesData createFromParcel(Parcel source) {
             return new CitiesData(source);
