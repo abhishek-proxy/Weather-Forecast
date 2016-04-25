@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.linux.weatherforecast.Data.CitiesData;
+import com.example.linux.weatherforecast.Data.DailyReport;
 import com.example.linux.weatherforecast.Data.Data;
 
 /**
@@ -25,6 +26,12 @@ public class Navigate {
     public static void toCityWeatherForecast(Context context, Data data){
         Intent intent = new Intent(context, CityWeatherForecast.class);
         intent.putExtra("data", data);
+        context.startActivity(intent);
+    }
+
+    public static void toWeatherReport(Context context, DailyReport dailyReport){
+        Intent intent = new Intent(context, WeatherReport.class);
+        intent.putExtra("DayReport", dailyReport);
         context.startActivity(intent);
     }
 

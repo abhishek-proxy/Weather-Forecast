@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.linux.weatherforecast.Data.DailyReport;
 import com.example.linux.weatherforecast.Data.Data;
 
 public class CityWeatherForecast extends AppCompatActivity {
@@ -36,13 +37,11 @@ public class CityWeatherForecast extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("Notes", "item clicked");
-                //Data data = c.getCitiesData().get(position);
-                //Navigate.toCityWeatherForecast(CitiesDetails.this, data);
+                DailyReport dailyReport = data.getList().get(position);
+                Navigate.toWeatherReport(CityWeatherForecast.this, dailyReport);
             }
         });
     }
-
-
 
 
     private void getDataFromIntent(){

@@ -91,9 +91,8 @@ public class ListAdapter extends BaseAdapter{
     private View showCityDailyReport(int i,View view){
         dateHolder.date = (TextView) view.findViewById(R.id.date);
         DailyReport dailyReport = dailyReports.get(i);
-        Date date = new Date(dailyReport.getDt() * 1000);
         Log.i("Notes", dailyReport.getDt() + "");
-        dateHolder.date.setText(date.toString());
+        dateHolder.date.setText(Util.getDateFromTimeStamp(dailyReport.getDt()));
         view.setTag(dateHolder);
         return view;
     }
