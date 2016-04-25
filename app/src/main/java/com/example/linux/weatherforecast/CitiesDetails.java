@@ -9,8 +9,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.linux.weatherforecast.Data.CitiesData;
+import com.example.linux.weatherforecast.Data.Data;
 
-public class CitiesDetails extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class CitiesDetails extends AppCompatActivity {
 
     Bundle b;
     CitiesData citiesData;
@@ -24,6 +25,7 @@ public class CitiesDetails extends AppCompatActivity implements AdapterView.OnIt
         getDataFromIntent();
         initializeViews();
         showCityDetails();
+        setEventsForViews();
     }
 
     private void showCityDetails(){
@@ -35,14 +37,20 @@ public class CitiesDetails extends AppCompatActivity implements AdapterView.OnIt
         cityListView = (ListView) findViewById(R.id.cities_list);
     }
 
+    private void setEventsForViews(){
+        cityListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("Notes", "item clicked");
+                Data data = citiesData.getCitiesData().get(position);
+                Navigate.toCityWeatherForecast(CitiesDetails.this, data);
+            }
+        });
+    }
+
     private void getDataFromIntent(){
         Bundle b = getIntent().getExtras();
         citiesData = b.getParcelable("citiesData");
-
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
 }
