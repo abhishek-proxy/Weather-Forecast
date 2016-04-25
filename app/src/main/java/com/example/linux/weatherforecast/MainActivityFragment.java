@@ -37,6 +37,12 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
     LinkedList<Data> citiesWeatherData;
 
     @Override
+    public void onPause() {
+        super.onPause();
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.main_activity_fragment, container);
     }
@@ -44,7 +50,6 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         initializeViews(view);
         setEventsForViews();
         citiesData = new CitiesData();
@@ -57,6 +62,7 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
         textView = (TextView) view.findViewById(R.id.test);
 
     }
+
     private void setEventsForViews() {
         getCityWeatherReportButton.setOnClickListener(v -> requestWeatherData());
     }
@@ -76,6 +82,7 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
         Log.i("Notes","in next function");
         Log.i("Notes", citiesData.getCitiesData().size() + "");
         Navigate.toCityDetails(getActivity(), citiesData);
+        getActivity().finish();
     }
 
     private Map<String, String> getMap(String cityName){
@@ -85,8 +92,6 @@ public class MainActivityFragment extends Fragment implements MainActivityView{
         weatherReportRequestMap.put("APPID", Constants.APP_ID);
         return weatherReportRequestMap;
     }
-
-
 
     @Override
     public void cityWeatherReport(Data weatherData) {

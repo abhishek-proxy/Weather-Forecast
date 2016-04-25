@@ -19,17 +19,17 @@ public class WeatherReport extends AppCompatActivity {
     }
 
     private void setData(){
-        date.setText(Util.getDateFromTimeStamp(dailyReport.getDt()));
-        main.setText(dailyReport.getWeather().get(0).getMain());
-        description.setText(dailyReport.getWeather().get(0).getDescription());
-        pressure.setText(dailyReport.getPressure() + "");
-        tempDay.setText(dailyReport.getTemp().getDay() + "");
-        tempNight.setText(dailyReport.getTemp().getNight() + "");
-        tempMin.setText(dailyReport.getTemp().getMin() + "");
-        tempMax.setText(dailyReport.getTemp().getMax() + "");
-        tempEve.setText(dailyReport.getTemp().getEve() + "");
-        tempMorn.setText(dailyReport.getTemp().getMorn() + "");
-        humidity.setText(dailyReport.getHumidity() + "");
+        date.setText("Date: " + Util.getDateFromTimeStamp(dailyReport.getDt()));
+        main.setText("Weather Main: " + dailyReport.getWeather().get(0).getMain());
+        description.setText("Desciption: " + dailyReport.getWeather().get(0).getDescription());
+        pressure.setText("Pressure " + dailyReport.getPressure() + "");
+        tempDay.setText("Day Temperature: " + dailyReport.getTemp().getDay() + "");
+        tempNight.setText("Night Temperature: " + dailyReport.getTemp().getNight() + "");
+        tempMin.setText("Minimum Temperature: " + dailyReport.getTemp().getMin() + "");
+        tempMax.setText("Maximum Temperature: " + dailyReport.getTemp().getMax() + "");
+        tempEve.setText("Evening Temperature: " + dailyReport.getTemp().getEve() + "");
+        tempMorn.setText("Morning Temperature: " + dailyReport.getTemp().getMorn());
+        humidity.setText("Humidity: " + dailyReport.getHumidity());
     }
 
     private void initializeViews(){
